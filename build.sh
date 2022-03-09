@@ -19,6 +19,7 @@ if [[ "$MODE" == "build" ]]; then
 	if ! test -e "$BUILD_DIR/${IMG_URL//*\//}"; then
 		 wget "$IMG_URL" -O "$BUILD_DIR/${IMG_URL//*\//}"
 	fi
+	rm -rf ${BUILD_DIR}/image
 	# Build
 	PACKER_LOG=1 packer build template.pkr.hcl
 	echo Done building.

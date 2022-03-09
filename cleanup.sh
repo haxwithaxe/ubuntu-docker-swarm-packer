@@ -1,11 +1,12 @@
 #!/bin/bash -eux
 
-rm install-*.sh cleanup.sh
+rm pre.sh install-*.sh cleanup.sh
 
 # Apt cleanup.
-apt-get autoremove -y
-apt-get autoclean -y
-apt-get update
+export DEBIAN_FRONTEND=noninteractive
+apt autoremove -y
+apt autoclean -y
+apt update
 
 #  Blank netplan machine-id (DUID) so machines get unique ID generated on boot.
 truncate -s 0 /etc/machine-id
